@@ -1,7 +1,7 @@
 <?php
 // includes/db.php
 $DB_HOST = '127.0.0.1';
-$DB_NAME = 'smad';
+$DB_NAME = 'smad_init';
 $DB_USER = 'root';
 $DB_PASS = '';
 

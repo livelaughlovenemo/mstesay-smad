@@ -1,57 +1,43 @@
 <?php
-// login.php
 session_start();
-require_once __DIR__ . '/includes/db.php';
+require_once "includes/db.php";
 
-$err = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    if ($username === '' || $password === '') {
-        $err = 'Please fill both fields.';
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :u");
+    $stmt->execute(["u" => $username]);
+    $user = $stmt->fetch();
+
+    if ($user && password_verify($password, $user["password"])) {
+        $_SESSION["user_id"] = $user["id"];
+        $_SESSION["username"] = $user["username"];
+        header("Location: dashboard.php");
+        exit;
     } else {
-        $stmt = $pdo->prepare("SELECT id, password_hash FROM users WHERE username = :u LIMIT 1");
-        $stmt->execute(['u' => $username]);
-        $user = $stmt->fetch();
-        if ($user && password_verify($password, $user['password_hash'])) {
-            // login success
-            session_regenerate_id(true);
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $username;
-            header('Location: dashboard.php');
-            exit;
-        } else {
-            $err = 'Invalid username or password.';
-        }
+        $error = "Invalid username or password.";
     }
 }
 ?>
-<?php include __DIR__ . '/includes/header.php'; ?>
-<div class="row justify-content-center">
-  <div class="col-md-5">
-    <div class="card shadow-sm mt-5">
-      <div class="card-body">
-        <h4 class="card-title mb-3">Login</h4>
-        <?php if ($err): ?>
-          <div class="alert alert-danger"><?=htmlspecialchars($err)?></div>
-        <?php endif; ?>
-        <form method="post" action="login.php">
-          <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input name="username" class="form-control" required autofocus>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input name="password" type="password" class="form-control" required>
-          </div>
-          <div class="d-grid">
-            <button class="btn btn-primary">Login</button>
-          </div>
-        </form>
-        <div class="mt-3 text-muted small">Demo: username <b>admin</b> | password <b>admin123</b></div>
-      </div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="container" style="display:flex; height:100vh; align-items:center; justify-content:center;">
+  <div class="login-box" style="background:white; padding:30px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.2);">
+    <h2>LOG IN</h2>
+    <?php if (!empty($error)): ?><p style="color:red;"><?= htmlspecialchars($error) ?></p><?php endif; ?>
+    <form method="post">
+      <div><input type="text" name="username" placeholder="Username" required></div>
+      <div><input type="password" name="password" placeholder="Password" required></div>
+      <button type="submit" class="view-btn">LOGIN</button>
+    </form>
   </div>
 </div>
-<?php include __DIR__ . '/includes/footer.php'; ?>
+</body>
+</html>
