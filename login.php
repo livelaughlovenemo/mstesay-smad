@@ -5,18 +5,21 @@ require_once "includes/db.php";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
-
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :u");
+try {
+    $stmt = $pdo->prepare("SELECT id, username, password_hash FROM users WHERE username = :u");
     $stmt->execute(["u" => $username]);
     $user = $stmt->fetch();
 
-    if ($user && password_verify($password, $user["password"])) {
+    if ($user && password_verify($password, $user["password_hash"])) {
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["username"] = $user["username"];
         header("Location: dashboard.php");
         exit;
     } else {
         $error = "Invalid username or password.";
+    } 
+  } catch (PDOException $e) {
+        $error = "Database error: " . $e->getMessage();
     }
 }
 ?>
