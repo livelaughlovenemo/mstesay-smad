@@ -1,4 +1,4 @@
-<div class="sidebar">
+<!--<div class="sidebar">
   <a href="dashboard.php">
     <img src="assets/img/logo.svg" alt="Logo" width="20"> Dashboard
   </a>
@@ -18,4 +18,4 @@
   <a href="logout.php">
     <img src="assets/img/user.svg" alt="Logout" width="20"> Logout
   </a>
-</div>
+</div> -->

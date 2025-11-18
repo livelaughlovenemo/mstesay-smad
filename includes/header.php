@@ -18,9 +18,3 @@
   </div>
 </header>
 
-<div class="sidebar">
-  <a href="dashboard.php">📊 Dashboard</a>
-  <a href="products.php">📦 Products</a>
-  <a href="daily_sales.php">🧾 Sales Entry</a>
-  <a href="financial_reports.php">📈 Reports</a>
-</div>

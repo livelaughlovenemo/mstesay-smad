@@ -30,7 +30,7 @@ header {
   gap: 10px;
 }
 
-/* Sidebar */
+/* Sidebar 
 .sidebar {
   position: fixed;
   margin-top: 65px;
@@ -63,7 +63,7 @@ header {
   opacity: 0.8;
   font-size: large;
   font-weight: bold;
-}
+}*/
 
 /* Main content */
 .main-content {
