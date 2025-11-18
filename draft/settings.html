@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Settings | Sales Monitoring System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard-style.css">
+  <link rel="icon" type="image/png" href="mainlogo.png">
+</head>
+<body>
+  <header>
+    <div class="head">
+      <h3>Sales Monitoring System</h3>
+    </div>
+
+    <div class="header-right">
+      <div class="custom-select-wrapper">
+        <div class="custom-select">
+          <div class="custom-select-trigger">
+            <span>Select Branch</span>
+            <div class="arrow"></div>
+          </div>
+          <div class="custom-options">
+            <span class="custom-option" data-value="Branch 1">Branch 1</span>
+            <span class="custom-option" data-value="Branch 2">Branch 2</span>
+            <span class="custom-option" data-value="Branch 3">Branch 3</span>
+          </div>
+        </div>
+      </div>
+
+      <svg width="35px" height="35px" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 
+                 2 12s4.48 10 10 10 
+                 10-4.48 10-10S17.52 2 12 2zm0 
+                 4a3 3 0 110 6 3 3 0 010-6zm0 
+                 14c-2.5 0-4.71-1.28-6-3.22 
+                 .03-1.99 4-3.08 6-3.08 
+                 2 0 5.97 1.09 6 3.08A6.978 
+                 6.978 0 0112 20z"/>
+      </svg>
+    </div>
+  </header>
+
+  <nav class="sidebar">
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="productspage.html">🛒 Products</a>
+    <a href="analyticspage.html">📈 Analytics</a>
+    <a href="settings.html" style="font-weight:bold; color:#F7743B;">⚙️ Settings</a>
+  </nav>
+
+  <main class="main-content">
+    <h2 class="page-title">Settings</h2>
+
+    <div class="settings-container">
+
+      <div class="settings-section">
+        <h3>🔧 System Settings</h3>
+        <label>Store Name</label>
+        <input type="text" placeholder="Enter store name">
+
+        <label>Default Branch</label>
+        <select>
+          <option>Branch 1</option>
+          <option>Branch 2</option>
+          <option>Branch 3</option>
+        </select>
+
+        <label>Currency Format</label>
+        <select>
+          <option>₱ Philippine Peso</option>
+          <option>$ US Dollar</option>
+          <option>€ Euro</option>
+        </select>
+      </div>
+
+      <div class="settings-section">
+        <h3>👤 User Preferences</h3>
+        <label>Display Theme</label>
+        <select>
+          <option>Light</option>
+          <option>Dark</option>
+        </select>
+
+        <label>Notifications</label>
+        <select>
+          <option>Enabled</option>
+          <option>Disabled</option>
+        </select>
+
+        <label>Language</label>
+        <select>
+          <option>English</option>
+          <option>Filipino</option>
+        </select>
+      </div>
+
+      <div class="settings-section">
+        <h3>🗂 Data Management</h3>
+        <button class="danger-btn">Clear Sales Data</button>
+        <button class="danger-btn">Reset System Settings</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    document.querySelectorAll(".custom-select").forEach(select => {
+      const trigger = select.querySelector(".custom-select-trigger");
+      const options = select.querySelectorAll(".custom-option");
+
+      trigger.addEventListener("click", () => {
+        select.classList.toggle("open");
+      });
+
+      options.forEach(option => {
+        option.addEventListener("click", () => {
+          select.querySelector(".custom-option.selected")?.classList.remove("selected");
+          option.classList.add("selected");
+          trigger.querySelector("span").textContent = option.textContent;
+          select.classList.remove("open");
+        });
+      });
+    });
+
+    window.addEventListener("click", e => {
+      document.querySelectorAll(".custom-select").forEach(select => {
+        if (!select.contains(e.target)) {
+          select.classList.remove("open");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
