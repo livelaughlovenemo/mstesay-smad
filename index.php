@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "includes/db.php"; // Your PDO connection file
+require_once "includes/db.php"; 
 
 $login_error = '';
 
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($user && password_verify($password, $user['password_hash'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            header("Location: dashboard.php"); // Redirect after successful login
+            header("Location: dashboard.php"); 
             exit;
         } else {
             $login_error = "Invalid username or password.";
