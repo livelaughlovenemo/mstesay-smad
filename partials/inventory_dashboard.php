@@ -1,31 +1,48 @@
 <?php
-include __DIR__ . "/../includes/db.php";  
+include __DIR__ . "/../includes/db.php";
 
-// Fetch all chicken products
+// Pagination settings
+$limit = 10; // number of products per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
+
+// Fetch total number of chicken products for pagination
+$totalQuery = $pdo->prepare("SELECT COUNT(*) FROM products WHERE category = 'chicken'");
+$totalQuery->execute();
+$totalChicken = $totalQuery->fetchColumn();
+$totalPages = ceil($totalChicken / $limit);
+
+// Fetch chicken products for current page
 $chickenQuery = $pdo->prepare("
     SELECT id, name FROM products 
     WHERE category = 'chicken'
     ORDER BY name ASC
+    LIMIT :limit OFFSET :offset
 ");
+$chickenQuery->bindValue(':limit', $limit, PDO::PARAM_INT);
+$chickenQuery->bindValue(':offset', $offset, PDO::PARAM_INT);
 $chickenQuery->execute();
-$chickenProducts = $chickenQuery->fetchAll();
+$chickenProducts = $chickenQuery->fetchAll(PDO::FETCH_ASSOC);
 
+// Repeat for frozen products
+$totalQueryF = $pdo->prepare("SELECT COUNT(*) FROM products WHERE category = 'frozen'");
+$totalQueryF->execute();
+$totalFrozen = $totalQueryF->fetchColumn();
+$totalPagesF = ceil($totalFrozen / $limit);
 
-// Fetch all frozen products
 $frozenQuery = $pdo->prepare("
     SELECT id, name FROM products 
     WHERE category = 'frozen'
     ORDER BY name ASC
+    LIMIT :limit OFFSET :offset
 ");
+$frozenQuery->bindValue(':limit', $limit, PDO::PARAM_INT);
+$frozenQuery->bindValue(':offset', $offset, PDO::PARAM_INT);
 $frozenQuery->execute();
-$frozenProducts = $frozenQuery->fetchAll();
-
-
-//suppliers 
-$suppliers = ["Marcela","Manay","Remaining","Lexzoes","Wella","Pick-Ups"];
-
-$today = date('Y-m-d');
+$frozenProducts = $frozenQuery->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <div class="card mb-4">
   <div class="card-body">
