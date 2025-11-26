@@ -26,11 +26,6 @@ session_start();
     <a href="#about">About</a>
     <a href="#branches">Branches</a>
     <a href="#contact">Contact</a>
-    <?php if(isset($_SESSION['user_id'])): ?>
-      <a href="dashboard.php" class="profile-btn">Dashboard</a>
-    <?php else: ?>
-      <a href="login.php" class="login-btn">Profile</a>
-    <?php endif; ?>
   </nav>
 </header>
 
@@ -72,7 +67,6 @@ session_start();
       <option>Branch B</option>
       <option>Branch C</option>
     </select>
-    <button>View Dashboard</button>
   </div>
 </section>
 
