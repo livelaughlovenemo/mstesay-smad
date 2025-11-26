@@ -1,14 +1,42 @@
 <?php
 session_start();
 if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
+    header("Location: index.php");
     exit;
 }
 
 $activeTab = isset($_GET["tab"]) ? $_GET["tab"] : "sales";
-
-include "includes/header.php"; // Keep your standard header (navbar)
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Ms. Tesay Chicken</title>
+  <link rel="stylesheet" href="assets/css/landing-styles.css">
+  <link rel="icon" type="image/png" href="assets/img/mainlogo.png">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <img src="assets/img/mainlogo.png" alt="Logo">
+    <span>Ms. Tesay Chicken</span>
+  </div>
+
+  <nav>
+    <span style="margin-right:15px; font-weight:600; color:#333;">
+      <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+        <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="#F7743B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 20C4 17.2386 7.23858 15 12 15C16.7614 15 20 17.2386 20 20" stroke="#F7743B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <?= htmlspecialchars($_SESSION['username']) ?>
+    </span>
+    <a href="logout.php" class="login-btn" style="padding:8px 16px; font-size:14px;">Logout</a>
+  </nav>
+</header>
 
 <main class="dashboard-main">
 
@@ -48,6 +76,7 @@ include "includes/header.php"; // Keep your standard header (navbar)
 </main>
 
 <style>
+/* --- Dashboard Styles --- */
 .dashboard-main {
     font-family: 'Montserrat', sans-serif;
     padding: 120px 40px 60px 40px;
@@ -78,6 +107,7 @@ include "includes/header.php"; // Keep your standard header (navbar)
     color: #4a4a4a;
 }
 
+/* TAB STYLING */
 .tab-navigation {
     display: flex;
     gap: 15px;
@@ -136,6 +166,41 @@ include "includes/header.php"; // Keep your standard header (navbar)
     from { opacity: 0; transform: translateY(5px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* NAVBAR ADJUSTMENTS */
+.navbar {
+  width: 100%;
+  padding: 18px 50px;
+  background: #ffffffee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  border-bottom: 1px solid #dedede;
+  backdrop-filter: blur(8px);
+}
+
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.login-btn {
+  background: #FF7A2F;
+  color: white;
+  border-radius: 12px;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #F55A00;
+}
 </style>
 
 <script>
@@ -155,4 +220,5 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 </script>
 
-<?php include "includes/footer.php"; ?>
+</body>
+</html>
