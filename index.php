@@ -51,9 +51,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <a href="#about">About</a>
     <a href="#branches">Branches</a>
     <a href="#contact">Contact</a>
-    <a href="#login" class="login-btn">Login</a>
+
+    <?php if(isset($_SESSION['user_id'])): ?>
+      <div class="profile-dropdown">
+        <span class="profile-icon">
+          <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+            <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="#F7743B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 20C4 17.2386 7.23858 15 12 15C16.7614 15 20 17.2386 20 20" stroke="#F7743B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <?= htmlspecialchars($_SESSION['username']) ?>
+        </span>
+        <div class="dropdown-menu">
+          <a href="../includes/user_profile.php">Profile</a>
+          <a href="../includes/logout.php">Logout</a>
+        </div>
+      </div>
+    <?php else: ?>
+      <a href="#login" class="login-btn">Login</a>
+    <?php endif; ?>
   </nav>
 </header>
+
 
 <section class="hero-slider">
 
