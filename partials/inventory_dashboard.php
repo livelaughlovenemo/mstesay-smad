@@ -1,24 +1,28 @@
 <?php
+include __DIR__ . "/../includes/db.php";  
+
+// Fetch all chicken products
+$chickenQuery = $pdo->prepare("
+    SELECT id, name FROM products 
+    WHERE category = 'chicken'
+    ORDER BY name ASC
+");
+$chickenQuery->execute();
+$chickenProducts = $chickenQuery->fetchAll();
+
+
+// Fetch all frozen products
+$frozenQuery = $pdo->prepare("
+    SELECT id, name FROM products 
+    WHERE category = 'frozen'
+    ORDER BY name ASC
+");
+$frozenQuery->execute();
+$frozenProducts = $frozenQuery->fetchAll();
+
+
+//suppliers 
 $suppliers = ["Marcela","Manay","Remaining","Lexzoes","Wella","Pick-Ups"];
-
-$chickenProducts = [
-  "Whole Chicken","BackBones","Neck","SKT Bones","Skin","Cuttings","Fillet",
-  "Liver","Gizzard/B","Atay Baticon","Feet","Heads","Intestine",
-  "Crps/Prvn/BTC","Dugo","Fats","Gizzard Fats"
-];
-
-$frozenProducts = [
-  "Champion Hotdog Jumbo 1Kilo","Champion Hotdog Jumbo 250G","Champion Hotdog Mini 250G",
-  "Booster Hotdog Jumbo 1k","Booster Hotdog Jumbo 240G","Booster Hotdog Regular 240G",
-  "BS Hotdog Classic KingSize 1K","BS Hotdog Classic Jumbo 1K","BS Hotdog Cheese KingSize 1K",
-  "BS Hotdog Cheese Jumbo 1K","Champion Pork Longganiza","Champion Chicken Longganiza",
-  "Winner Cooked Ham","Winner Sweet Ham","EL RANCHO Corned Beef","Virginia Pork Tocino",
-  "Champion Chicken Loaf","Champion Chicken Hotdog","Virginia Chicken Hotdog","Champion Cheese Hotdog",
-  "Winner Bola-bola","Kings Longganiza","IQF Longganiza","Luncheon Meat","Tocino Roll",
-  "Smoke Longganiza","Longga Dog","Bilog","Calderon","K - Patties","Ganado",
-  "TJ Classic","TJ Cheesedog Regular","TJ Cheesedog Jumbo","TJ Cocktail","Lumpia Shanghai",
-  "Bologna","Ginaling","Virginia Tocino Roll","Bulgogi","BS Spicy Hotdog","Sisig"
-];
 
 $today = date('Y-m-d');
 ?>
@@ -43,48 +47,54 @@ $today = date('Y-m-d');
 
       <!-- TABS -->
       <ul class="nav-tabs mb-3 inventory-tabs">
-        <li><button type="button" data-target="#chickenForm" class="tab-btn active">🐔 Chicken</button></li>
-        <li><button type="button" data-target="#frozenForm" class="tab-btn">❄️ Frozen</button></li>
+        <li><button type="button" data-target="chickenForm" class="tab-btn active">🐔 Chicken</button></li>
+        <li><button type="button" data-target="frozenForm" class="tab-btn">❄️ Frozen</button></li>
       </ul>
 
-      <!-- CHICKEN SECTION -->
+      <!-- CHICKEN PRODUCTS -->
       <div id="chickenForm" class="tab-content active">
-        <h5 class="mb-2 fw-bold">Chicken Products</h5>
-
+        <h5 class="fw-bold mb-2">Chicken Products</h5>
         <table class="table table-bordered table-sm align-middle text-center">
           <thead>
             <tr>
-              <th style="width:60%">Product</th>
+              <th width="60%">Product</th>
               <th>Kilos</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($chickenProducts as $prod): ?>
+            <?php foreach ($chickenProducts as $p): ?>
               <tr>
-                <td class="text-start"><?= $prod ?></td>
-                <td><input type="number" step="0.01" name="inv[chicken][<?= $prod ?>]" class="form-control text-center"></td>
+                <td class="text-start"><?= htmlspecialchars($p['name']) ?></td>
+                <td>
+                  <input type="number" step="0.01" 
+                         name="inv[chicken][<?= $p['id'] ?>]" 
+                         class="form-control text-center">
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
       </div>
 
-      <!-- FROZEN SECTION -->
+      <!-- FROZEN PRODUCTS -->
       <div id="frozenForm" class="tab-content">
-        <h5 class="mb-2 fw-bold">Frozen Products</h5>
-
+        <h5 class="fw-bold mb-2">Frozen Products</h5>
         <table class="table table-bordered table-sm align-middle text-center">
           <thead>
             <tr>
-              <th style="width:60%">Product</th>
+              <th width="60%">Product</th>
               <th>Kilos</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($frozenProducts as $prod): ?>
+            <?php foreach ($frozenProducts as $p): ?>
               <tr>
-                <td class="text-start"><?= $prod ?></td>
-                <td><input type="number" step="0.01" name="inv[frozen][<?= $prod ?>]" class="form-control text-center"></td>
+                <td class="text-start"><?= htmlspecialchars($p['name']) ?></td>
+                <td>
+                  <input type="number" step="0.01" 
+                         name="inv[frozen][<?= $p['id'] ?>]" 
+                         class="form-control text-center">
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -94,9 +104,9 @@ $today = date('Y-m-d');
       <button class="btn btn-primary mt-3">💾 Save Inventory</button>
 
     </form>
-
   </div>
 </div>
+
 
 <style>
   .inventory-tabs { display:flex; gap:10px; padding-left:0; }
@@ -119,14 +129,17 @@ $today = date('Y-m-d');
 
 <script>
 document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // switch active tab button
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
 
+    // switch visible content
     document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-    document.querySelector(btn.dataset.target).classList.add("active");
-
+    document.getElementById(btn.dataset.target).classList.add("active");
   });
 });
 </script>
+
