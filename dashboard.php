@@ -5,14 +5,20 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 
-// Determine current tab
 $activeTab = isset($_GET["tab"]) ? $_GET["tab"] : "sales";
 
-include "includes/header.php";
+include "includes/header.php"; // Keep your standard header (navbar)
 ?>
-<main class="main-content">
 
-  <!-- TOP NAV -->
+<main class="dashboard-main">
+
+  <!-- DASHBOARD HERO -->
+  <section class="dashboard-hero">
+      <h1>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h1>
+      <p>Monitor your sales and inventory efficiently.</p>
+  </section>
+
+  <!-- TAB NAVIGATION -->
   <div class="tab-navigation">
       <button class="tab-btn <?= $activeTab === 'sales' ? 'active' : '' ?>" data-target="sales">
         📊 Sales Dashboard
@@ -22,19 +28,19 @@ include "includes/header.php";
       </button>
   </div>
 
-  <!-- CONTENT WRAPPER -->
+  <!-- TAB CONTENT -->
   <div class="tab-container">
 
       <!-- SALES TAB -->
       <section id="sales" class="tab-content <?= $activeTab === 'sales' ? 'active' : '' ?>">
           <div class="loader"></div>
-          <?php include "partials/sales_dashboard.php"; ?>
+          <p>Sales content will go here...</p>
       </section>
 
       <!-- INVENTORY TAB -->
       <section id="inventory" class="tab-content <?= $activeTab === 'inventory' ? 'active' : '' ?>">
           <div class="loader"></div>
-          <?php include "partials/inventory_dashboard.php"; ?>
+          <p>Inventory content will go here...</p>
       </section>
 
   </div>
@@ -42,78 +48,108 @@ include "includes/header.php";
 </main>
 
 <style>
-  .tab-navigation {
-      display: flex;
-      gap: 15px;
-      margin-bottom: 20px;
-  }
+.dashboard-main {
+    font-family: 'Montserrat', sans-serif;
+    padding: 120px 40px 60px 40px;
+    background: #f4f4f4;
+    min-height: 90vh;
+    color: #333;
+}
 
-  .tab-btn {
-      padding: 10px 18px;
-      border: none;
-      background: #f1f1f1;
-      cursor: pointer;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: 0.2s ease;
-  }
+.dashboard-hero {
+    text-align: left;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #fff5d7, #fff);
+    padding: 30px 25px;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
 
-  .tab-btn.active {
-      background: #007bff;
-      color: white;
-  }
+.dashboard-hero h1 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: #F5A200;
+    margin-bottom: 10px;
+}
 
-  .tab-content {
-      display: none;
-      animation: fadeIn 0.3s ease;
-  }
+.dashboard-hero p {
+    font-size: 16px;
+    color: #4a4a4a;
+}
 
-  .tab-content.active {
-      display: block;
-  }
+.tab-navigation {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
 
-  .loader {
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #ddd, #007bff, #ddd);
-      background-size: 200% 100%;
-      animation: loading 1s infinite linear;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      display: none;
-  }
+.tab-btn {
+    padding: 10px 18px;
+    border: none;
+    background: #fff3cd;
+    cursor: pointer;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
 
-  .tab-content.active .loader {
-      display: block;
-  }
+.tab-btn.active {
+    background: #F5A200;
+    color: white;
+}
 
-  @keyframes loading {
-      from { background-position: 200% 0}
-      to { background-position: -200% 0}
-  }
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
 
-  @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to   { opacity: 1; transform: translateY(0); }
-  }
+.tab-content.active {
+    display: block;
+}
+
+.loader {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #ddd, #F5A200, #ddd);
+    background-size: 200% 100%;
+    animation: loading 1s infinite linear;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.tab-content.active .loader {
+    display: block;
+}
+
+@keyframes loading {
+    from { background-position: 200% 0}
+    to { background-position: -200% 0}
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 </style>
 
 <script>
 // tab switching
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-
-    // Update visual active state
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
     btn.classList.add('active');
+    document.getElementById(btn.dataset.target).classList.add('active');
 
-    const target = btn.dataset.target;
-    document.getElementById(target).classList.add('active');
-
-    // Update URL (optional but useful)
-    const newURL = "?tab=" + target;
+    // Update URL
+    const newURL = "?tab=" + btn.dataset.target;
     history.replaceState(null, "", newURL);
   });
 });
