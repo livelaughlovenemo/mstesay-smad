@@ -8,8 +8,8 @@ if (!isset($_SESSION["user_id"])) {
 $role = $_SESSION['role']; 
 $activeTab = isset($_GET["tab"]) ? $_GET["tab"] : "sales";
 
-include "includes/db.php"; 
-include "includes/header.php";
+include "db.php"; 
+include "header.php";
 ?>
 
 <main class="dashboard-main">
