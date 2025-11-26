@@ -1,30 +1,26 @@
 <?php
 session_start();
-require_once "includes/db.php"; 
-
-$login_error = '';
+require_once "includes/db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    if ($username && $password) {
-        $stmt = $pdo->prepare("SELECT id, username, password_hash FROM users WHERE username = :username");
-        $stmt->execute(['username' => $username]);
-        $user = $stmt->fetch();
+    $stmt = $pdo->prepare("SELECT id, username, password_hash, role FROM users WHERE username = :u");
+    $stmt->execute(["u" => $username]);
+    $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password_hash'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            header("Location: dashboard.php"); 
-            exit;
-        } else {
-            $login_error = "Invalid username or password.";
-        }
+    if ($user && password_verify($password, $user['password_hash'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
+        header("Location: dashboard.php");
+        exit;
     } else {
-        $login_error = "Please fill in both fields.";
+        $error = "Invalid username or password.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -106,11 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   <div class="login-box">
     <h2 style="font-family: Urbanist, sans-serif;">LOG IN</h2>
     <p>Please login to access your account.</p>
-
-    <?php if($login_error): ?>
-        <p style="color:red; font-size:14px; margin-bottom:15px;"><?php echo $login_error; ?></p>
-    <?php endif; ?>
-
     <form method="POST" action="">
       <div class="input-group">
         <span class="icon">
