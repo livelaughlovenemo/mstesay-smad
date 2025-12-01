@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: linear-gradient(#f4f4f4, #e7e7e7);
+    overflow-x: hidden;
+    color: #333;
+}
+
+.navbar {
+    width: 100%;
+    padding: 15px 47px;
+    background: #ffffffee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    border-bottom: 1px solid #dedede;
+    /* backdrop-filter: blur(8px); */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+nav a.active {
+    font-weight: bold;
+    color: #F5A200;
+    backdrop-filter: blur(15px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.user-icon svg path {
+    transition: stroke-width 0.2s ease, fill 0.2s ease;
+}
+
+.user-icon:hover svg path {
+    stroke-width: 1;
+    stroke: #F5A200;
+    fill: #F5A200;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* <-- FIX: perfect spacing between logo & text */
+}
+
+.logo img {
+    width: 45px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    font-weight: bold;
+    color: #F5A200;
+    backdrop-filter: blur(15px);
+}
+
+footer {
+    padding: 15px;
+    text-align: center;
+    background: #dfdede;
+    color: #000000;
+}
+
+/* ------------------------- */
+
+.contact-section {
+            margin-top: 130px;
+            padding: 40px 20px 100px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #F5A200;
+            margin-bottom: 10px;
+        }
+
+        .contact-section p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-box {
+            width: 330px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+            text-align: center;
+            border: 1px solid #eee;
+            transition: 0.3s ease;
+        }
+
+        .contact-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 3px 20px #FFC23C;
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            color: #F5A200;
+            margin-bottom: 15px;
+        }
+
+        .contact-box h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .contact-box p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 80px auto 0;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.10);
+            border: 1px solid #eee;
+        }
+
+        .contact-form h3 {
+            color: #F5A200;
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-top: 6px;
+            background: #f8f8f8;
+        }
+
+        .form-group textarea {
+            height: 130px;
+            resize: none;
+        }
+
+        .send-btn {
+            width: 100%;
+            padding: 14px;
+            background: #FFC23C;
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .send-btn:hover {
+            background: #FFB000;
+        }

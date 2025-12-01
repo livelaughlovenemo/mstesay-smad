@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: linear-gradient(#f4f4f4, #e7e7e7);
+    overflow-x: hidden;
+    color: #333;
+}
+
+.navbar {
+    width: 100%;
+    padding: 15px 47px;
+    background: #ffffffee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    border-bottom: 1px solid #dedede;
+    /* backdrop-filter: blur(8px); */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+nav a.active {
+    font-weight: bold;
+    color: #F5A200;
+    backdrop-filter: blur(15px);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.user-icon svg path {
+    transition: stroke-width 0.2s ease, fill 0.2s ease;
+}
+
+.user-icon:hover svg path {
+    stroke-width: 1;
+    stroke: #F5A200;
+    fill: #F5A200;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* <-- FIX: perfect spacing between logo & text */
+}
+
+.logo img {
+    width: 45px;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    font-weight: bold;
+    color: #F5A200;
+    backdrop-filter: blur(15px);
+}
+
+footer {
+    padding: 15px;
+    text-align: center;
+    background: #dfdede;
+    color: #000000;
+}
+
+.about-section {
+    width: 100%;
+    margin-top: 75px;
+    text-align: center;
+}
+
+.about-image {
+    width: 100%;
+    height: 420px;
+    background-image: url('store.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 0;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.about-description {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #333;
+    font-weight: 500;
+}
+
