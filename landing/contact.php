@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Castoro:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Urbanist:ital,wght@0,100..900&family=Varela+Round&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/contact-styles.css">
+    <link rel="icon" type="image/png" href="../assets/img/mainlogo.png">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <img src="mainlogo.png" alt="Logo">
+        <h2 style="font-family: Pacifico, cursive;">Ms. Tesay Chicken</h2>
+    </div>
+
+    <nav>
+    <a href="../index.php">Home</a>
+    <a href="about.php" >About</a>
+    <a href="products.php">Products</a>
+    <a href="contact.php">Contact</a>
+    <a href="../includes/login.php" class="user-icon">
+            <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.5" stroke="#000000" stroke-width="0.8" d="M12 22.01C17.5228 22.01 22 17.5329 22 12.01C22 6.48716 17.5228 2.01001 12 2.01001C6.47715 2.01001 2 6.48716 2 12.01C2 17.5329 6.47715 22.01 12 22.01Z" fill="none"/>
+                <path d="M12 6.93994C9.93 6.93994 8.25 8.61994 8.25 10.6899C8.25 12.7199 9.84 14.3699 11.95 14.4299C11.98 14.4299 12.02 14.4299 12.04 14.4299C12.06 14.4299 12.09 14.4299 12.11 14.4299C12.12 14.4299 12.13 14.4299 12.13 14.4299C14.15 14.3599 15.74 12.7199 15.75 10.6899C15.75 8.61994 14.07 6.93994 12 6.93994Z" fill="#333"/>
+                <path d="M18.7807 19.36C17.0007 21 14.6207 22.01 12.0007 22.01C9.3807 22.01 7.0007 21 5.2207 19.36C5.4607 18.45 6.1107 17.62 7.0607 16.98C9.7907 15.16 14.2307 15.16 16.9407 16.98C17.9007 17.62 18.5407 18.45 18.7807 19.36Z" fill="#333"/>
+            </svg>
+        </a>
+    </nav>
+</header>
+
+<section class="contact-section">
+    <h2>Get in Touch</h2>
+    <p>We’re here to assist you! Feel free to reach out through our contact details below.</p>
+
+    <div class="contact-container">
+        <div class="contact-box">
+            <div class="contact-icon">📍</div>
+            <h3>Store Location</h3>
+            <p>Carbon Market Unit 1<br> Cebu City, Philippines</p>
+        </div>
+
+        <div class="contact-box">
+            <div class="contact-icon">📞</div>
+            <h3>Phone</h3>
+            <p>+63 912 345 6789<br>Available daily, 6AM – 6PM</p>
+        </div>
+
+        <div class="contact-box">
+            <div class="contact-icon">✉️</div>
+            <h3>Email</h3>
+            <p>mstesaychicken@gmail.com<br>We respond within 24 hours</p>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <h3>Send Us a Message</h3>
+
+        <form>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="send-btn">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <p style="font-size: smaller;">© 2025 Ms. Tesay Chicken Sales Monitoring System</p>
+</footer>
+
+</body>
+
+</html>
+
+<?php include "../includes/footer.php"; ?>

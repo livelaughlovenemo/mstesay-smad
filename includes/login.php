@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login_submit'])) {
     </nav>
   </header>
   <div class="container">
-    <div class="left-side">
+    <div class="left-side"> 
       <img src="../assets/img/chicken-logo.png" style="opacity: 0.9;"  alt="Login Illustration">
     </div>
 
