@@ -25,84 +25,79 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login_submit'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Ms. Tesay Chicken</title>
-<link rel="stylesheet" href="assets/css/landing-styles.css">
-<link rel="icon" type="image/png" href="assets/img/mainlogo.png">
-<style>
-.login-container {
-    min-height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #f4f4f4;
-}
-.login-box {
-    background: #fff;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    width: 100%;
-    max-width: 400px;
-}
-.login-box h2 {
-    margin-bottom: 20px;
-    color: #F5A200;
-    font-family: 'Urbanist', sans-serif;
-}
-.login-box p {
-    margin-bottom: 20px;
-}
-.input-group {
-    margin-bottom: 15px;
-}
-.input-group input {
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-}
-.login-btn {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 12px;
-    background: #F5A200;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-}
-.login-error {
-    color: red;
-    margin-bottom: 10px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Castoro:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Urbanist:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/login-styles.css">
+  <link rel="icon" type="image/png" href="../assets/img/mainlogo.png">
 </head>
 <body>
 
-<div class="login-container">
-    <div class="login-box">
-        <h2>Login</h2>
-        <p>Enter your credentials to access the dashboard.</p>
-        <?php if($loginError): ?>
-            <div class="login-error"><?= htmlspecialchars($loginError) ?></div>
-        <?php endif; ?>
-        <form method="POST" action="">
-            <div class="input-group">
-                <input type="text" name="username" placeholder="Username" required>
-            </div>
-            <div class="input-group">
-                <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <button type="submit" name="login_submit" class="login-btn">Login</button>
-        </form>
+    <header class="navbar">
+    <div class="logo">
+      <img src="mainlogo.png" alt="Logo">
+      <h2 style="font-family: Pacifico, cursive;">Ms. Tesay Chicken</h2>
     </div>
-</div>
 
+    <nav>
+    <a href="../index.php">Home</a>
+    <a href="about.html" >About</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="user-icon">
+      <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path opacity="0.5" stroke="#F5A200" stroke-width="0.8" d="M12 22.01C17.5228 22.01 22 17.5329 22 12.01C22 6.48716 17.5228 2.01001 12 2.01001C6.47715 2.01001 2 6.48716 2 12.01C2 17.5329 6.47715 22.01 12 22.01Z" fill="none"/>
+      <path d="M12 6.93994C9.93 6.93994 8.25 8.61994 8.25 10.6899C8.25 12.7199 9.84 14.3699 11.95 14.4299C11.98 14.4299 12.02 14.4299 12.04 14.4299C12.06 14.4299 12.09 14.4299 12.11 14.4299C12.12 14.4299 12.13 14.4299 12.13 14.4299C14.15 14.3599 15.74 12.7199 15.75 10.6899C15.75 8.61994 14.07 6.93994 12 6.93994Z" fill="#F5A200"/>
+      <path d="M18.7807 19.36C17.0007 21 14.6207 22.01 12.0007 22.01C9.3807 22.01 7.0007 21 5.2207 19.36C5.4607 18.45 6.1107 17.62 7.0607 16.98C9.7907 15.16 14.2307 15.16 16.9407 16.98C17.9007 17.62 18.5407 18.45 18.7807 19.36Z" fill="#F5A200"/>
+      </svg>
+      </a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="left-side">
+      <img src="../assets/img/chicken-logo.png" style="opacity: 0.9;"  alt="Login Illustration">
+    </div>
+
+    <div class="right-side">
+      <div class="login-box">
+        <h2>LOG IN</h2>
+        <p>Please login to access your account.</p>
+        
+        <!-- Display error message if login fails -->
+        <?php if ($loginError): ?>
+          <div class="error-message" style="color: red; margin-bottom: 15px; text-align: center;">
+            <?php echo htmlspecialchars($loginError); ?>
+          </div>
+        <?php endif; ?>
+        
+        <!-- Changed form method to POST and added name attributes -->
+        <form method="POST" action="">
+          <div class="input-group">
+            <span class="icon">
+              <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#F7743B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <input type="text" name="username" placeholder="Username" required>
+          </div>
+          <div class="input-group">
+            <span class="icon">
+              <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 10.0288C7.47142 10 8.05259 10 8.8 10H15.2C15.9474 10 16.5286 10 17 10.0288M7 10.0288C6.41168 10.0647 5.99429 10.1455 5.63803 10.327C5.07354 10.6146 4.6146 11.0735 4.32698 11.638C4 12.2798 4 13.1198 4 14.8V16.2C4 17.8802 4 18.7202 4.32698 19.362C4.6146 19.9265 5.07354 20.3854 5.63803 20.673C6.27976 21 7.11984 21 8.8 21H15.2C16.8802 21 17.7202 21 18.362 20.673C18.9265 20.3854 19.3854 19.9265 19.673 19.362C20 18.7202 20 17.8802 20 16.2V14.8C20 13.1198 20 12.2798 19.673 11.638C19.3854 11.0735 18.9265 10.6146 18.362 10.327C18.0057 10.1455 17.5883 10.0647 17 10.0288M7 10.0288V8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8V10.0288" stroke="#F7743B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            </span>
+            <input type="password" name="password" placeholder="Password" required>
+          </div>
+          <button type="submit" name="login_submit">LOGIN</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
