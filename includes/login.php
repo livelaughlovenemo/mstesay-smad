@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login_submit'])) {
 
     <header class="navbar">
     <div class="logo">
-      <img src="mainlogo.png" alt="Logo">
+      <img src="../assets/img/mainlogo.png" alt="Logo">
       <h2 style="font-family: Pacifico, cursive;">Ms. Tesay Chicken</h2>
     </div>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2025 at 09:19 AM
+-- Generation Time: Dec 02, 2025 at 06:08 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -62,40 +62,46 @@ CREATE TABLE `daily_inventory` (
 
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
   `inv_date` date NOT NULL,
   `category` varchar(50) NOT NULL,
   `product_name` varchar(100) NOT NULL,
   `supplier` varchar(50) NOT NULL,
   `location_id` int(11) DEFAULT NULL,
   `kilos` decimal(10,2) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `quantity` decimal(10,2) DEFAULT 0.00,
+  `inv_type` enum('add','subtract') DEFAULT 'add'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`id`, `inv_date`, `category`, `product_name`, `supplier`, `location_id`, `kilos`, `created_at`) VALUES
-(1, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 358.52, '2025-09-17 05:31:20'),
-(2, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 358.52, '2025-09-17 05:31:25'),
-(3, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 358.52, '2025-09-17 05:32:20'),
-(4, '2025-09-17', '', 'Whole Chicken', 'Manay', NULL, 198.52, '2025-09-17 05:32:20'),
-(5, '2025-09-17', '', 'Whole Chicken', 'Remaining', NULL, 275.87, '2025-09-17 05:32:20'),
-(6, '2025-09-17', '', 'Whole Chicken', 'Lexzoes', NULL, 181.02, '2025-09-17 05:32:20'),
-(7, '2025-09-17', '', 'Whole Chicken', 'Pick-Ups', NULL, 47.01, '2025-09-17 05:32:20'),
-(8, '2025-09-17', '', 'BackBones', 'Marcela', NULL, 306.10, '2025-09-17 05:32:20'),
-(9, '2025-09-17', '', 'BackBones', 'Remaining', NULL, 93.15, '2025-09-17 05:32:20'),
-(10, '2025-09-17', '', 'Neck', 'Marcela', NULL, 100.00, '2025-09-17 05:32:20'),
-(11, '2025-09-17', '', 'Neck', 'Remaining', NULL, 19.55, '2025-09-17 05:32:20'),
-(12, '2025-09-17', '', 'SKT Bones', 'Marcela', NULL, 82.08, '2025-09-17 05:32:20'),
-(13, '2025-09-17', '', 'SKT Bones', 'Remaining', NULL, 5.15, '2025-09-17 05:32:20'),
-(14, '2025-09-17', '', 'Skin', 'Marcela', NULL, 20.74, '2025-09-17 05:32:20'),
-(15, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 100.00, '2025-09-17 05:33:34'),
-(16, '2025-09-17', '', 'Whole Chicken', 'Manay', NULL, 100.00, '2025-09-17 05:33:34'),
-(17, '2025-09-17', '', 'Whole Chicken', 'Remaining', NULL, 100.00, '2025-09-17 05:33:34'),
-(18, '2025-09-17', '', 'Whole Chicken', 'Lexzoes', NULL, 100.00, '2025-09-17 05:33:34'),
-(19, '2025-09-17', '', 'Whole Chicken', 'Wella', NULL, 100.00, '2025-09-17 05:33:34'),
-(20, '2025-09-17', '', 'Whole Chicken', 'Pick-Ups', NULL, 100.00, '2025-09-17 05:33:34');
+INSERT INTO `inventory` (`id`, `product_id`, `inv_date`, `category`, `product_name`, `supplier`, `location_id`, `kilos`, `created_at`, `quantity`, `inv_type`) VALUES
+(1, 1, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 358.52, '2025-09-17 05:31:20', 0.00, 'add'),
+(2, 1, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 358.52, '2025-09-17 05:31:25', 0.00, 'add'),
+(3, 1, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 358.52, '2025-09-17 05:32:20', 0.00, 'add'),
+(4, 1, '2025-09-17', '', 'Whole Chicken', 'Manay', NULL, 198.52, '2025-09-17 05:32:20', 0.00, 'add'),
+(5, 1, '2025-09-17', '', 'Whole Chicken', 'Remaining', NULL, 275.87, '2025-09-17 05:32:20', 0.00, 'add'),
+(6, 1, '2025-09-17', '', 'Whole Chicken', 'Lexzoes', NULL, 181.02, '2025-09-17 05:32:20', 0.00, 'add'),
+(7, 1, '2025-09-17', '', 'Whole Chicken', 'Pick-Ups', NULL, 47.01, '2025-09-17 05:32:20', 0.00, 'add'),
+(8, 0, '2025-09-17', '', 'BackBones', 'Marcela', NULL, 306.10, '2025-09-17 05:32:20', 0.00, 'add'),
+(9, 0, '2025-09-17', '', 'BackBones', 'Remaining', NULL, 93.15, '2025-09-17 05:32:20', 0.00, 'add'),
+(10, 0, '2025-09-17', '', 'Neck', 'Marcela', NULL, 100.00, '2025-09-17 05:32:20', 0.00, 'add'),
+(11, 0, '2025-09-17', '', 'Neck', 'Remaining', NULL, 19.55, '2025-09-17 05:32:20', 0.00, 'add'),
+(12, 0, '2025-09-17', '', 'SKT Bones', 'Marcela', NULL, 82.08, '2025-09-17 05:32:20', 0.00, 'add'),
+(13, 0, '2025-09-17', '', 'SKT Bones', 'Remaining', NULL, 5.15, '2025-09-17 05:32:20', 0.00, 'add'),
+(14, 0, '2025-09-17', '', 'Skin', 'Marcela', NULL, 20.74, '2025-09-17 05:32:20', 0.00, 'add'),
+(15, 1, '2025-09-17', '', 'Whole Chicken', 'Marcela', NULL, 100.00, '2025-09-17 05:33:34', 0.00, 'add'),
+(16, 1, '2025-09-17', '', 'Whole Chicken', 'Manay', NULL, 100.00, '2025-09-17 05:33:34', 0.00, 'add'),
+(17, 1, '2025-09-17', '', 'Whole Chicken', 'Remaining', NULL, 100.00, '2025-09-17 05:33:34', 0.00, 'add'),
+(18, 1, '2025-09-17', '', 'Whole Chicken', 'Lexzoes', NULL, 100.00, '2025-09-17 05:33:34', 0.00, 'add'),
+(19, 1, '2025-09-17', '', 'Whole Chicken', 'Wella', NULL, 100.00, '2025-09-17 05:33:34', 0.00, 'add'),
+(20, 1, '2025-09-17', '', 'Whole Chicken', 'Pick-Ups', NULL, 100.00, '2025-09-17 05:33:34', 0.00, 'add'),
+(21, 35, '2025-12-02', '', 'Bilog', 'Lexzoes', 4, 100.00, '2025-12-02 15:24:25', 0.00, 'add'),
+(22, 35, '2025-12-02', '', '', '', NULL, 0.00, '2025-12-02 15:52:52', 120.00, 'add'),
+(23, 35, '2025-12-02', '', '', '', NULL, 0.00, '2025-12-02 15:53:02', 60.00, 'subtract');
 
 -- --------------------------------------------------------
 
@@ -175,7 +181,7 @@ INSERT INTO `products` (`id`, `name`, `category`, `price`, `created_at`, `stock`
 (32, 'Tocino Roll', 'frozen', 190.00, '2025-11-26 05:24:05', 0.00, 1),
 (33, 'Smoke Longganiza', 'frozen', 200.00, '2025-11-26 05:24:05', 0.00, 1),
 (34, 'Longga Dog', 'frozen', 150.00, '2025-11-26 05:24:05', 0.00, 1),
-(35, 'Bilog', 'frozen', 140.00, '2025-11-26 05:24:05', 0.00, 1),
+(35, 'Bilog', 'frozen', 140.00, '2025-11-26 05:24:05', 60.00, 1),
 (36, 'Calderon', 'frozen', 135.00, '2025-11-26 05:24:05', 0.00, 1),
 (37, 'K - Patties', 'frozen', 120.00, '2025-11-26 05:24:05', 0.00, 1),
 (38, 'Ganado', 'frozen', 130.00, '2025-11-26 05:24:05', 0.00, 1),
@@ -190,7 +196,8 @@ INSERT INTO `products` (`id`, `name`, `category`, `price`, `created_at`, `stock`
 (47, 'Virginia Tocino Roll', 'frozen', 185.00, '2025-11-26 05:24:05', 0.00, 1),
 (48, 'Bulgogi', 'frozen', 220.00, '2025-11-26 05:24:05', 0.00, 1),
 (49, 'BS Spicy Hotdog', 'frozen', 165.00, '2025-11-26 05:24:05', 0.00, 1),
-(50, 'Sisig', 'frozen', 170.00, '2025-11-26 05:24:05', 0.00, 1);
+(50, 'Sisig', 'frozen', 170.00, '2025-11-26 05:24:05', 0.00, 1),
+(51, 'TEST', 'RAW', 67.00, '2025-12-02 15:17:44', 0.00, 0);
 
 -- --------------------------------------------------------
 
@@ -205,6 +212,13 @@ CREATE TABLE `sales` (
   `total_price` decimal(12,2) NOT NULL,
   `sale_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`id`, `product_id`, `quantity`, `total_price`, `sale_datetime`) VALUES
+(2, 35, 12, 1680.00, '2025-12-02 23:17:08');
 
 -- --------------------------------------------------------
 
@@ -225,8 +239,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password_hash`, `created_at`, `role`) VALUES
-(1, 'admin', '$2y$10$MKbL0kZNhAEmtAoa1s3jtuB1847LDFLqfJBOhBz46BZ0aefqGgQjK', '2025-09-17 05:00:50', 'Staff'),
-(2, 'adminadmin', 'adminadmin', '2025-11-18 14:44:36', 'Staff');
+(1, 'admin', '$2y$10$MKbL0kZNhAEmtAoa1s3jtuB1847LDFLqfJBOhBz46BZ0aefqGgQjK', '2025-09-17 05:00:50', 'Admin'),
+(13, 'staff', '$2y$10$r6doG/ZxBc.xus7towCnA.T12hdY3prPcOMReznygvdf5XqxwebIu', '2025-12-02 15:01:16', 'Staff'),
+(14, 'manager', '$2y$10$hDX3a5cuRMV9jfW/gQ48Zuv7RoJkATd2iJUXRo6.2po8QwlX/7G8K', '2025-12-02 15:01:29', 'Staff');
 
 --
 -- Indexes for dumped tables
@@ -252,7 +267,9 @@ ALTER TABLE `daily_inventory`
 --
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_inventory_location` (`location_id`);
+  ADD KEY `fk_inventory_location` (`location_id`),
+  ADD KEY `idx_inventory_product_id` (`product_id`),
+  ADD KEY `idx_inventory_date` (`inv_date`);
 
 --
 -- Indexes for table `locations`
@@ -272,7 +289,9 @@ ALTER TABLE `products`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `idx_sales_product_id` (`product_id`),
+  ADD KEY `idx_sales_datetime` (`sale_datetime`);
 
 --
 -- Indexes for table `users`
@@ -301,7 +320,7 @@ ALTER TABLE `daily_inventory`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -313,19 +332,19 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
