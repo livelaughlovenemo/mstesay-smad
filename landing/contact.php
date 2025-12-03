@@ -16,7 +16,7 @@
 
 <header class="navbar">
     <div class="logo">
-        <img src="mainlogo.png" alt="Logo">
+        <img src="../assets/img/mainlogo.png" alt="Logo">
         <h2 style="font-family: Pacifico, cursive;">Ms. Tesay Chicken</h2>
     </div>
 
@@ -59,28 +59,6 @@
         </div>
     </div>
 
-    <div class="contact-form">
-        <h3>Send Us a Message</h3>
-
-        <form>
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" placeholder="Enter your name" required>
-            </div>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email" required>
-            </div>
-
-            <div class="form-group">
-                <label>Message</label>
-                <textarea placeholder="Write your message here..." required></textarea>
-            </div>
-
-            <button type="submit" class="send-btn">Send Message</button>
-        </form>
-    </div>
 </section>
 
 <footer>
