@@ -175,10 +175,6 @@
 
 </section>
 
-<footer>
-    <p style="font-size: smaller;">© 2025 Ms. Tesay Chicken Sales Monitoring System</p>
-</footer>
-
 <script>
     const categories = document.querySelectorAll('.category-labels span');
     const products = document.querySelectorAll('.product-card');
