@@ -34,9 +34,7 @@
 </header>
 
 <section class="about-section">
-    <div class="about-image">
-        
-    </div>
+    <div class="about-image"></div>
     <div class="about-description">
         <p>
             Located in the heart of Carbon Market Unit 1, Ms. Tesay Chicken has been a trusted source of fresh dressed chicken and high‑quality frozen products for local families and businesses. Known for its reliability, affordability, and friendly service, the store continues to serve the community with products that meet everyday household and commercial needs. Whether you're preparing a family meal or stocking up for your business, Ms. Tesay Chicken remains committed to delivering freshness you can rely on.
