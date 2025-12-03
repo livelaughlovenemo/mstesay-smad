@@ -22,7 +22,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <style>
-    /* Reset and base styles only - remove conflicting dashboard styles */
     * {
         margin: 0;
         padding: 0;
