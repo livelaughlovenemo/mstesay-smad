@@ -326,8 +326,6 @@ $products = $productStmt->fetchAll();
 ?>
 
 <main class="dashboard-main">
-
-  <!-- DASHBOARD HERO -->
   <section class="dashboard-hero">
       <h1>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h1>
       <p>Monitor your sales and inventory efficiently.</p>
@@ -371,7 +369,6 @@ $products = $productStmt->fetchAll();
 
 <div class="tab-container">
 
-  <!-- SALES TAB -->
   <section id="sales" class="tab-content <?= $activeTab === 'sales' ? 'active' : '' ?>">
       <?php if(isset($_SESSION['error'])): ?>
           <div class="error-message" style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
@@ -476,11 +473,11 @@ $products = $productStmt->fetchAll();
       </table>
   </section>
 
-  <!-- SALES RECORDS TAB -->
+
   <section id="sales_records" class="tab-content <?= $activeTab === 'sales_records' ? 'active' : '' ?>">
       <h3>Sales Records & Analytics</h3>
       
-      <!-- Date Filter Options -->
+
       <div class="date-filter" style="margin: 20px 0;">
           <h4>Filter Sales Records:</h4>
           <div class="filter-buttons">
@@ -513,7 +510,6 @@ $products = $productStmt->fetchAll();
           </div>
       </div>
       
-      <!-- Summary Stats -->
       <?php
       $totalSalesAmount = 0;
       $totalSalesQuantity = 0;
@@ -544,7 +540,6 @@ $products = $productStmt->fetchAll();
           </div>
       </div>
       
-      <!-- Sales Records Table -->
       <h4>Sales Records</h4>
       <div class="table-container" style="overflow-x: auto;">
           <table>
@@ -1300,11 +1295,7 @@ $products = $productStmt->fetchAll();
 </main>
 
 <style>
-/* Add new styles for the reports and sales records */
 
-/* ====== CRITICAL LAYOUT FIXES ====== */
-
-/* Tab Content Display - THIS IS MISSING AND CAUSING LAYOUT BREAK */
 .tab-content {
     display: none;
     padding: 20px;
@@ -1318,7 +1309,6 @@ $products = $productStmt->fetchAll();
     display: block;
 }
 
-/* Form Styles - MISSING */
 .crud-form {
     background: #f8f9fa;
     padding: 20px;
@@ -1344,7 +1334,6 @@ $products = $productStmt->fetchAll();
     flex: 1;
 }
 
-/* Button Styles - MISSING */
 .add-btn, .delete-btn, .search-btn, .action-btn {
     padding: 10px 20px;
     border: none;
@@ -1415,7 +1404,6 @@ $products = $productStmt->fetchAll();
     background: #138496;
 }
 
-/* Table Styles - FIXED */
 .table-container {
     overflow-x: auto;
     margin: 20px 0;
@@ -1445,7 +1433,6 @@ tbody tr:hover {
     background-color: #f8f9fa;
 }
 
-/* Modal Styles - MISSING */
 .modal {
     display: none;
     position: fixed;
@@ -1527,7 +1514,6 @@ tbody tr:hover {
     color: white;
 }
 
-/* Search and Sort Container - MISSING */
 .search-sort-container {
     display: flex;
     justify-content: space-between;
@@ -1569,7 +1555,6 @@ tbody tr:hover {
     background: white;
 }
 
-/* Pagination - MISSING */
 .pagination {
     display: flex;
     gap: 5px;
@@ -1606,7 +1591,6 @@ tbody tr:hover {
     margin-top: 10px;
 }
 
-/* Status Badges - MISSING */
 .status-badge, .type-badge {
     padding: 5px 10px;
     border-radius: 20px;
@@ -1635,7 +1619,6 @@ tbody tr:hover {
     color: #721c24;
 }
 
-/* Stat Cards - FIXED */
 .stat-card {
     background: white;
     padding: 15px;
@@ -1657,7 +1640,6 @@ tbody tr:hover {
     color: #212529;
 }
 
-/* Filter Buttons - MISSING */
 .filter-buttons {
     display: flex;
     gap: 10px;
@@ -1680,7 +1662,6 @@ tbody tr:hover {
     color: white;
 }
 
-/* Clear Search - MISSING */
 .clear-search {
     color: #dc3545;
     text-decoration: none;
@@ -1691,8 +1672,6 @@ tbody tr:hover {
 .clear-search:hover {
     text-decoration: underline;
 }
-
-/* ====== YOUR EXISTING CSS ====== */
 
 /* Export Buttons */
 .export-btn {
@@ -1917,10 +1896,9 @@ window.onclick = function(event) {
     }
 }
 
-// Export functions
+// Export functions (NOT FUNCTIONAL, DO NOT ALTER)
 function exportToCSV(type) {
     alert('Export feature would generate a CSV file for ' + type + ' data.');
-    // In a real implementation, this would make an AJAX call to generate and download CSV
 }
 
 // Initialize active tab based on URL
