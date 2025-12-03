@@ -34,6 +34,9 @@
         background: #f8f9fa;
         min-height: 100vh;
     }
+    .dashboard-wrapper {
+        padding-top: 70px;
+    }
     
     .dashboard-header {
         background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);

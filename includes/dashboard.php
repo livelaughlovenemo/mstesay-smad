@@ -326,11 +326,6 @@ $products = $productStmt->fetchAll();
 ?>
 
 <main class="dashboard-main">
-  <section class="dashboard-hero">
-      <h1>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h1>
-      <p>Monitor your sales and inventory efficiently.</p>
-  </section>
-
   <div class="tab-navigation">
     <button class="tab-btn <?= $activeTab === 'sales' ? 'active' : '' ?>" data-target="sales">
         📊 Sales Dashboard
@@ -1704,12 +1699,14 @@ tbody tr:hover {
 
 /* Tab navigation adjustments for more tabs */
 .tab-navigation {
+    padding-top: 20px;
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
     flex-wrap: wrap;
     overflow-x: auto;
     padding-bottom: 5px;
+    z-index: 20;
 }
 
 .tab-btn {
@@ -1722,11 +1719,12 @@ tbody tr:hover {
     transition: 0.2s ease;
     white-space: nowrap;
     font-size: 14px;
+    color: black;
 }
 
 .tab-btn.active { 
     background: #F5A200; 
-    color: white; 
+    color: black; 
     box-shadow: 0 4px 8px rgba(245, 162, 0, 0.2);
 }
 
@@ -1782,12 +1780,14 @@ td:first-child {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .tab-navigation {
+        padding-top: 20px;
         gap: 5px;
     }
     
     .tab-btn {
         padding: 8px 12px;
         font-size: 12px;
+        color: black;
     }
     
     .filter-buttons {
