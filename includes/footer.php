@@ -1,7 +1,6 @@
 <?php
-// includes/footer.php
 ?>
-</div> <!-- /container -->
+</div>
 
 <footer class="site-footer">
     <div class="footer-container">
@@ -31,10 +30,9 @@
             <h4>Quick Links</h4>
             <ul class="quick-links">
                 <li><a href="../index.php">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="about.php">About Us</a></li>
+                <li><a href="products.php">Products</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </div>
         
@@ -53,9 +51,9 @@
         <div class="footer-bottom-container">
             <p>&copy; <?php echo date('Y'); ?> Ms. Tesay Chicken. All rights reserved.</p>
             <div class="footer-legal">
-                <a href="privacy.html">Privacy Policy</a> | 
-                <a href="terms.html">Terms of Service</a> | 
-                <a href="sitemap.html">Sitemap</a>
+                <a href="index.php">Privacy Policy</a> | 
+                <a href="index.php">Terms of Service</a> | 
+                <a href="index.php">Sitemap</a>
             </div>
         </div>
     </div>
