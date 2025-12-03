@@ -81,8 +81,8 @@ session_start();
     const visitedBefore = sessionStorage.getItem("visited");
     const current = window.location.pathname.split("/").pop();
 
-  if (visitedBefore && current === "index.html") {
-    document.querySelector('a[href="index.html"]').classList.add("active");
+  if (visitedBefore && current === "index.php") {
+    document.querySelector('a[href="index.php"]').classList.add("active");
   }
 
   links.forEach(link => {
