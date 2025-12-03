@@ -95,4 +95,4 @@ session_start();
 </body>
 </html>
 
-<?php include "../includes/footer.php"; ?>
+<?php include "includes/footer.php"; ?>
