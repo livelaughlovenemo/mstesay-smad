@@ -66,21 +66,6 @@ session_start();
   </div>
 </section>
 
-<section class="branch-finder" id="branches">
-  <h2 class="fade-in">View Branch Analytics</h2>
-  <div class="finder-box fade-up">
-    <select>
-      <option>Select Branch</option>
-      <option>Main</option>
-      <option>Aljun</option>
-      <option>Bb Q</option>
-      <option>Richard</option>
-      <option>Janeth</option>
-      <option>Lexzoes</option>
-    </select>
-    <button>View Dashboard</button>
-  </div>
-</section>
 
 <script>
   let slides = document.querySelectorAll(".slide");
@@ -109,3 +94,5 @@ session_start();
 
 </body>
 </html>
+
+<?php include "../includes/footer.php"; ?>
