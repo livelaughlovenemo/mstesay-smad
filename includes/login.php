@@ -96,6 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login_submit'])) {
           </div>
           <button type="submit" name="login_submit">LOGIN</button>
         </form>
+        <!-- Add this inside the login-box div, after the form -->
+<div class="register-link" style="text-align: center; margin-top: 20px;">
+    <p>Don't have an account? <a href="register.php" style="color: #F5A200; text-decoration: none;">Register here</a></p>
+</div>
       </div>
     </div>
   </div>
