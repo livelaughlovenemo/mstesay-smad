@@ -5,13 +5,12 @@ require_once "includes/cache.php";
 
 // Initialize cache if the class is available
 $cache = null;
-if (isset($pdo)) {
+if (isset($pdo) && class_exists('CacheManager')) {
     try {
-        if (class_exists('CacheManager')) {
-            $cache = new CacheManager($pdo);
-        }
+        $cache = new CacheManager($pdo);
     } catch (Exception $e) {
         error_log("Cache initialization error: " . $e->getMessage());
+        $cache = null;
     }
 }
 $category = $_GET['category'] ?? 'all';
@@ -21,11 +20,14 @@ $limit = 12;
 
 // Try to get cached products
 $cacheKey = "products_{$category}_{$search}_{$page}";
-$cachedProducts = $cache->getCachedReport('products', [
-    'category' => $category,
-    'search' => $search,
-    'page' => $page
-]);
+$cachedProducts = null;
+if ($cache) {
+    $cachedProducts = $cache->getCachedReport('products', [
+        'category' => $category,
+        'search' => $search,
+        'page' => $page
+    ]);
+}
 
 if ($cache && $cachedProducts) {
     $products = $cachedProducts['data'];

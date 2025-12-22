@@ -5,6 +5,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 header('Access-Control-Allow-Headers: Authorization, Content-Type');
 
 require_once '../../includes/db.php';
+require_once '../../includes/audit.php';
 
 // API Key authentication
 function authenticate_api() {
@@ -125,14 +126,24 @@ switch ($method) {
             $productId = $pdo->lastInsertId();
             
             // Log the action
-            log_audit($pdo, $userId, 'API_PRODUCT_CREATE', 'products', $productId, 
-                     "Product created via API: {$data['name']}");
-            
-            echo json_encode([
-                'success' => true,
-                'message' => 'Product created successfully',
-                'product_id' => $productId
-            ]);
+           function log_audit($pdo, $userId, $action, $table, $recordId = null, $details = null) {
+    if (!($pdo instanceof PDO)) {
+        return false;
+    }
+    try {
+        $stmt = $pdo->prepare("
+            INSERT INTO audit_logs (user_id, action, table_name, record_id, details, created_at)
+            VALUES (?, ?, ?, ?, ?, NOW())
+        ");
+        $stmt->execute([$userId, $action, $table, $recordId, $details]);
+        return $pdo->lastInsertId();
+    } catch (PDOException $e) {
+        // fallback to file if DB insert fails
+        $log = sprintf("[%s] user:%s action:%s table:%s record:%s details:%s\n", date('c'), $userId, $action, $table, $recordId ?? 'NULL', $details ?? '');
+        @file_put_contents(__DIR__ . '/audit_fallback.log', $log, FILE_APPEND | LOCK_EX);
+        return false;
+    }
+}
             
         } catch (PDOException $e) {
             http_response_code(500);
@@ -144,4 +155,3 @@ switch ($method) {
         http_response_code(405);
         echo json_encode(['error' => 'Method not allowed']);
 }
-?>

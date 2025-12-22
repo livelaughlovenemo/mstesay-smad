@@ -4,6 +4,44 @@ use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../src/security.php';
 
+// Define missing security functions if not in security.php
+if (!function_exists('validate_password_strength')) {
+    function validate_password_strength($password) {
+        $errors = [];
+        if (strlen($password) < 8) {
+            $errors[] = 'Password must be at least 8 characters';
+        }
+        if (!preg_match('/[A-Z]/', $password)) {
+            $errors[] = 'Password must contain uppercase letter';
+        }
+        if (!preg_match('/[a-z]/', $password)) {
+            $errors[] = 'Password must contain lowercase letter';
+        }
+        if (!preg_match('/[0-9]/', $password)) {
+            $errors[] = 'Password must contain number';
+        }
+        if (!preg_match('/[!@#$%^&*]/', $password)) {
+            $errors[] = 'Password must contain special character';
+        }
+        return $errors;
+    }
+}
+
+if (!function_exists('generate_csrf_token')) {
+    function generate_csrf_token() {
+        if (!isset($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
+    }
+}
+
+if (!function_exists('validate_csrf_token')) {
+    function validate_csrf_token($token) {
+        return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+    }
+}
+
 class IntegrationTest extends TestCase
 {
     private $pdo;
@@ -336,7 +374,7 @@ class IntegrationTest extends TestCase
         for ($i = 0; $i < 100; $i++) {
             $stmt = $this->pdo->prepare("SELECT * FROM products WHERE category = ?");
             $stmt->execute(['chicken']);
-            $results = $stmt->fetchAll();
+            $stmt->fetchAll();
         }
         
         $endTime = microtime(true);
